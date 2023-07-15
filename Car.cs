@@ -17,7 +17,6 @@ namespace RentCar
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Car()
         {
-            this.PriceList = new HashSet<PriceList>();
             this.Rent = new HashSet<Rent>();
         }
     
@@ -25,12 +24,12 @@ namespace RentCar
         public string Brand { get; set; }
         public string Model { get; set; }
         public string FuelType { get; set; }
-        public string Mileage { get; set; }
+        public int Mileage { get; set; }
         public string BodyType { get; set; }
-        public System.DateTime ProductionYear { get; set; }
+        public short ProductionYear { get; set; }
+        public double Price { get; set; }
+        public double Deposit { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PriceList> PriceList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rent> Rent { get; set; }
     }

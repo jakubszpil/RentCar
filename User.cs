@@ -12,13 +12,10 @@ namespace RentCar
     using System;
     using System.Collections.Generic;
     
-    public partial class PriceList
+    public partial class User
     {
         public int Id { get; set; }
-        public double Price { get; set; }
-        public double Deposit { get; set; }
-        public int CarId { get; set; }
-    
-        public virtual Car Car { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

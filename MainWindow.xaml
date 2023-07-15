@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Wypożyczalnia samochodów - Panel zarządzający"
+        MinWidth="1136"
+        Height="720" 
+        Width="1280"
+        Loaded="OnWindowLoad" 
+        HorizontalContentAlignment="Stretch"
+        HorizontalAlignment="Stretch"
+       >
+    <DockPanel LastChildFill="True">
+        <Frame x:Name="Navbar" NavigationUIVisibility="Hidden" HorizontalContentAlignment="Stretch"
+        HorizontalAlignment="Stretch" DockPanel.Dock="Top" />
+        <Frame x:Name="RouterView" NavigationUIVisibility="Hidden" HorizontalContentAlignment="Stretch"
+        HorizontalAlignment="Stretch" />
+    </DockPanel>
 </Window>

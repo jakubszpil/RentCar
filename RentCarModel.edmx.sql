@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/15/2023 00:01:26
+-- Date Created: 07/15/2023 15:22:40
 -- Generated from EDMX file: C:\Users\kuba0\source\repos\RentCar\RentCarModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,29 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ClientRent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Rents] DROP CONSTRAINT [FK_ClientRent];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RentCar]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Rents] DROP CONSTRAINT [FK_RentCar];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Cars]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Cars];
+GO
+IF OBJECT_ID(N'[dbo].[Clients]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Clients];
+GO
+IF OBJECT_ID(N'[dbo].[Rents]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Rents];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -33,18 +51,11 @@ CREATE TABLE [dbo].[Cars] (
     [Brand] nvarchar(max)  NOT NULL,
     [Model] nvarchar(max)  NOT NULL,
     [FuelType] nvarchar(max)  NOT NULL,
-    [Mileage] nvarchar(max)  NOT NULL,
+    [Mileage] int  NOT NULL,
     [BodyType] nvarchar(max)  NOT NULL,
-    [ProductionYear] datetime  NOT NULL
-);
-GO
-
--- Creating table 'PriceLists'
-CREATE TABLE [dbo].[PriceLists] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [ProductionYear] smallint  NOT NULL,
     [Price] float  NOT NULL,
-    [Deposit] float  NOT NULL,
-    [CarId] int  NOT NULL
+    [Deposit] float  NOT NULL
 );
 GO
 
@@ -68,6 +79,14 @@ CREATE TABLE [dbo].[Rents] (
 );
 GO
 
+-- Creating table 'Users'
+CREATE TABLE [dbo].[Users] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Username] nvarchar(max)  NOT NULL,
+    [Password] nvarchar(max)  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -75,12 +94,6 @@ GO
 -- Creating primary key on [Id] in table 'Cars'
 ALTER TABLE [dbo].[Cars]
 ADD CONSTRAINT [PK_Cars]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'PriceLists'
-ALTER TABLE [dbo].[PriceLists]
-ADD CONSTRAINT [PK_PriceLists]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -96,24 +109,15 @@ ADD CONSTRAINT [PK_Rents]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Users'
+ALTER TABLE [dbo].[Users]
+ADD CONSTRAINT [PK_Users]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [CarId] in table 'PriceLists'
-ALTER TABLE [dbo].[PriceLists]
-ADD CONSTRAINT [FK_CarPriceList]
-    FOREIGN KEY ([CarId])
-    REFERENCES [dbo].[Cars]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CarPriceList'
-CREATE INDEX [IX_FK_CarPriceList]
-ON [dbo].[PriceLists]
-    ([CarId]);
-GO
 
 -- Creating foreign key on [CarId] in table 'Rents'
 ALTER TABLE [dbo].[Rents]

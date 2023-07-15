@@ -4,14 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6b565a46218d4e81b6caa3a57368953f" Name="Diagram1" ZoomLevel="93" >
+      <Diagram DiagramId="6b565a46218d4e81b6caa3a57368953f" Name="Diagram1" ZoomLevel="102" >
         <EntityTypeShape EntityType="RentCarModel.Car" Width="1.5" PointX="1.875" PointY="3.5" />
-        <EntityTypeShape EntityType="RentCarModel.PriceList" Width="1.5" PointX="4.5" PointY="2.25" />
         <EntityTypeShape EntityType="RentCarModel.Client" Width="1.5" PointX="4.5" PointY="4.625" />
         <EntityTypeShape EntityType="RentCarModel.Rent" Width="1.5" PointX="6.75" PointY="3.625" />
-        <AssociationConnector Association="RentCarModel.CarPriceList" />
         <AssociationConnector Association="RentCarModel.RentCar" />
         <AssociationConnector Association="RentCarModel.ClientRent" />
+        <EntityTypeShape EntityType="RentCarModel.User" Width="1.5" PointX="4.25" PointY="2.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
