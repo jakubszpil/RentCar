@@ -3,11 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:RentCar.Pages"
+      xmlns:local="clr-namespace:RentCar"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Rents">
-
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,8 +19,69 @@
                 <TextBlock VerticalAlignment="Center" FontSize="24" FontWeight="Medium">Lista wypożyczeń</TextBlock>
             </WrapPanel>
             <WrapPanel Grid.Column="2" Margin="16" VerticalAlignment="Center">
-                <Button>Odnotuj nowe</Button>
+                <Button Click="NavigateToRentForm">Odnotuj nowe wypożyczenie</Button>
             </WrapPanel>
         </Grid>
+
+
+        <WrapPanel Margin="16" x:Name="TableInfo" Visibility="Hidden" VerticalAlignment="Center">
+            <TextBlock>Aktualnie w bazie nie ma żadnej odnotowanej historii wypożyczeń. Dodaj nowe klikając następujący przycisk:</TextBlock>
+            <Rectangle Margin="2"></Rectangle>
+            <Button Click="NavigateToRentForm">Odnotuj nowe wypożyczenie</Button>
+        </WrapPanel>
+
+
+        <WrapPanel x:Name="Table">
+            <Grid>
+                <DataGrid x:Name="RentsList" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" RowDetailsVisibilityMode="Collapsed"  Grid.RowSpan="8" Margin="16">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Style>
+
+                        <Style TargetType="{x:Type DataGridCellsPresenter}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Style>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Style>
+                        <Style TargetType="{x:Type DataGridRowHeader}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="name" Header="Imię" Width="*" Binding="{ Binding ClientName }"/>
+                        <DataGridTextColumn x:Name="surname" Header="Nazwisko" Width="*" Binding="{ Binding ClientSurname }"/>
+                        <DataGridTextColumn x:Name="email" Header="Email" Width="*" Binding="{ Binding ClientEmail }"/>
+                        <DataGridTextColumn x:Name="phoneNumber" Header="Numer telefonu" Width="*" Binding="{ Binding ClientPhoneNumber }"/>
+                        <DataGridTextColumn x:Name="brand" Header="Marka samochodu" Width="*" Binding="{ Binding CarBrand }"/>
+                        <DataGridTextColumn x:Name="model" Header="Model samochodu" Width="*" Binding="{ Binding CarModel }"/>
+                        <DataGridTextColumn x:Name="productionYear" Header="Rok produkcji" Width="*" Binding="{ Binding CarProductionYear }"/>
+                        <DataGridTextColumn x:Name="mileage" Header="Przebieg w km" Width="*" Binding="{ Binding CarMileage }"/>
+                        <DataGridTextColumn x:Name="rentalDate" Header="Data wypożyczenia" Width="*" Binding="{ Binding RentalDate }"/>
+                        <DataGridTextColumn x:Name="returnDate" Header="Data zwrotu" Width="*" Binding="{ Binding ReturnDate }"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Tag="{ Binding Id }" Click="RemoveRent">Usuń wpis</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </WrapPanel>
     </StackPanel>
 </Page>

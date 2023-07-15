@@ -53,7 +53,7 @@
 
         <WrapPanel Grid.Column="1">
             <Button Tag="Dashboard" Click="OnMenuButtonClick">Samochody</Button>
-            <Button Tag="Rents" Click="OnMenuButtonClick">Wypożyczenia</Button>
+            <Button Tag="Rents" Click="OnMenuButtonClick">Historia wypożyczeń</Button>
             <Button Tag="CarForm" Click="OnMenuButtonClick">Dodaj samochód</Button>
             <Button Tag="RentForm" Click="OnMenuButtonClick">Odnotuj wynajem</Button>
         </WrapPanel>

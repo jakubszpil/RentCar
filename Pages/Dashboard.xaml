@@ -3,13 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:RentCar.Pages"
+      xmlns:local="clr-namespace:RentCar"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Dashboard">
 
     <Page.Resources>
-        <CollectionViewSource x:Key="carsResource" d:DesignSource="{d:DesignInstance {x:Type RentCar.Car}}"/>
+        <CollectionViewSource x:Key="carsResource" d:DesignSource="{d:DesignInstance {x:Type local:Car}}"/>
     </Page.Resources>
     <StackPanel>
         <Grid>
@@ -36,17 +36,16 @@
 
 
         <WrapPanel x:Name="Table">
-            <Grid DataContext="{StaticResource carsResource}">
-                <DataGrid x:Name="cars" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="Collapsed"  Grid.RowSpan="8" Margin="16">
+            <Grid>
+                <DataGrid x:Name="CarsList" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True"  RowDetailsVisibilityMode="Collapsed"  Grid.RowSpan="8" Margin="16">
                     <DataGrid.Resources>
-
                         <Style TargetType="{x:Type DataGridCell}">
                             <Setter Property="Background" Value="Transparent" />
                             <Setter Property="BorderBrush" Value="Transparent" />
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="Foreground" Value="Black" />
                         </Style>
-                        
+
                         <Style TargetType="{x:Type DataGridCellsPresenter}">
                             <Setter Property="Background" Value="Transparent" />
                             <Setter Property="BorderBrush" Value="Transparent" />
@@ -67,6 +66,7 @@
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="id" Binding="{Binding Id}" Header="Id samochodu" Width="*"/>
                         <DataGridTextColumn x:Name="brand" Binding="{Binding Brand}" Header="Marka" Width="*"/>
                         <DataGridTextColumn x:Name="model" Binding="{Binding Model}" Header="Model" Width="*"/>
                         <DataGridTextColumn x:Name="fuelType" Binding="{Binding FuelType}" Header="Rodzaj paliwa" Width="*"/>

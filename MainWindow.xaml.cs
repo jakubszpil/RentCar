@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RentCar.Pages;
+using RentCar.Properties;
 using RentCar.UIComponents;
 
 namespace RentCar
@@ -24,6 +25,7 @@ namespace RentCar
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public void Navigate(string route) {
             switch(route)
             {
@@ -61,15 +63,5 @@ namespace RentCar
             DataContext = this;
             RouterView.Content = new Auth(OnAuthSuccess);
         }
-
-        private void OnWindowLoad(object sender, RoutedEventArgs e)
-        {
-            //using (var context = new RentCarContext())
-            //{
-            //    context.Cars.Load();
-            //    carsViewSource.Source = context.Cars.Local;
-            //}
-        }
-
     }
 }

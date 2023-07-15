@@ -1,45 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace RentCar.Pages {
     /// <summary>
     /// Logika interakcji dla klasy Dashboard.xaml
     /// </summary>
     public partial class Dashboard : Page {
         Action<string> Navigate;
-        CollectionViewSource carsResource;
 
         public Dashboard(Action<string> Navigate) {
             InitializeComponent();
             this.Navigate = Navigate;
-            this.carsResource = (CollectionViewSource)(FindResource("carsResource"));
 
             using (var context = new RentCarContext()) {
-                context.Cars.Load();
+                List<Car> cars = context.Cars.ToList();
 
-                var localCars = context.Cars.Local;
-
-                if (localCars.Count == 0) {
+                if (cars.Count == 0)  {
                     Table.Visibility = Visibility.Hidden;
                     TableInfo.Visibility = Visibility.Visible;
                 } else {
-                    this.carsResource.Source = localCars;
+                    CarsList.ItemsSource = cars;
                 }
+
             }
         }
 

@@ -76,6 +76,7 @@
     <Compile Include="Client.cs">
       <DependentUpon>RentCarModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RentItem.cs" />
     <Compile Include="Pages\Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>

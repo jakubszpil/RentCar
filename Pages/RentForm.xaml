@@ -3,12 +3,79 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:RentCar.Pages"
+      xmlns:local="clr-namespace:RentCar"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RentForm">
-
-    <Grid>
-        
-    </Grid>
+    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <WrapPanel.Resources>
+            <Style TargetType="{ x:Type Label }">
+                <Setter Property="Margin"  Value="6"/>
+                <Setter Property="MinWidth"  Value="120"/>
+            </Style>
+            <Style TargetType="{ x:Type TextBlock }">
+                <Setter Property="Margin"  Value="12"/>
+                <Setter Property="FontWeight" Value="Medium" />
+                <Setter Property="MinWidth"  Value="120"/>
+            </Style>
+            <Style TargetType="{ x:Type TextBox }">
+                <Setter Property="Margin"  Value="6"/>
+                <Setter Property="MinWidth"  Value="120"/>
+                <Setter Property="Height"  Value="20" />
+            </Style>
+            <Style TargetType="{ x:Type Button }">
+                <Setter Property="Margin"  Value="6"/>
+                <Setter Property="MinWidth"  Value="120"/>
+                <Setter Property="Height"  Value="20" />
+            </Style>
+            <Style TargetType="{ x:Type DatePicker }">
+                <Setter Property="Margin"  Value="6"/>
+                <Setter Property="Width"  Value="120"/>
+            </Style>
+            <Style TargetType="{ x:Type ComboBox }">
+                <Setter Property="Margin"  Value="6"/>
+                <Setter Property="Width"  Value="120"/>
+            </Style>
+        </WrapPanel.Resources>
+        <WrapPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock>Dane najemcy</TextBlock>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Content="Imię" />
+                    <TextBox x:Name="NameInput"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Content="Nazwisko" />
+                    <TextBox x:Name="SurnameInput"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Content="Email" />
+                    <TextBox x:Name="EmailInput"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Content="Numer telefonu" />
+                    <TextBox x:Name="PhoneNumberInput" PreviewTextInput="RegexNumberCheck" />
+                </WrapPanel>
+            </WrapPanel>
+            <WrapPanel Orientation="Vertical" >
+                <TextBlock>Dane wypożyczenia</TextBlock>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Content="Data wypożyczenia" />
+                    <DatePicker x:Name="RentalDateInput" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Content="Data zwrotu" />
+                    <DatePicker x:Name="ReturnDateInput"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Content="Id samochodu" />
+                    <TextBox x:Name="CarIdInput"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Click="OnReset">Resetuj dane</Button>
+                    <Button Click="OnSubmit">Dodaj wypożyczenie</Button>
+                </WrapPanel>
+            </WrapPanel>
+        </WrapPanel>
+    </WrapPanel>
 </Page>

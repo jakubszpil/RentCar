@@ -9,7 +9,6 @@
         MinWidth="1136"
         Height="720" 
         Width="1280"
-        Loaded="OnWindowLoad" 
         HorizontalContentAlignment="Stretch"
         HorizontalAlignment="Stretch"
        >
